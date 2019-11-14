@@ -1,4 +1,43 @@
+body {
+    background-color: #f9f9f9;
+}
+.logo-ctn {
+    padding: 1em 0;
+}
+
+.logo {
+    width: 3em;
+}
+
 .header {
-    background-color: yellow;
-    font-size: 1.2em;
+    font-size: 2em;
+    padding: 0;
+}
+
+.login-ctn {
+    margin-top: 2em;
+}
+
+.login-form {
+    width: 320px;
+    padding: 1.2em;
+    border: 1px solid #d8dee2;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.login-form label {
+    font-weight: 600;
+    margin-bottom: 0.2em;
+}
+
+.form-group {
+    padding: 0;
+}
+
+.submit-btn {
+    margin-top: 0.5em;
+    display: block;
+    width: 100%;
+    text-align: center;
 }
