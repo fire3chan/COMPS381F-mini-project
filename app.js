@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const indexPage = require('./routes/index');
 const verifyPage = require('./routes/verify');
 
 const app = express();
@@ -15,12 +16,7 @@ app.use('/bootstrap_css', express.static(__dirname + '/node_modules/bootstrap/di
 app.use('/bootstrap_js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 
 // path handling
-app.get("/", (req, res) => {
-    res.render("login.ejs", {
-    });
-    res.end();
-});
-
+app.get("/", indexPage);
 app.post("/verify",   verifyPage);
 
 app.listen(process.env.PORT || 8099);
