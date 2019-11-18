@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -13,7 +12,6 @@
 
 <body>
     <div>
-        <% console.log('abc')%>
     </div>
     <div class="container">
         <div class="row">
@@ -22,15 +20,15 @@
             </div>
             <h1 class="col-12 header text-center">Login to FoodGo</h1>
             <div class="col-12 d-flex justify-content-center login-ctn">
-                <form class="row login-form">
+                <form class="row login-form" action="/verify" method="POST">
                     <div class="form-group col-12">
                         <label for="user-id">User ID</label>
-                        <input type="text" class="form-control" id="user-id" aria-describedby="user-id"
+                        <input type="text" class="form-control" id="user-id" name="userid" aria-describedby="user-id"
                             placeholder="Enter user id" />
                     </div>
                     <div class="form-group col-12">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter Password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
                     </div>
                     <button type="submit" class="btn btn-primary submit-btn">Submit</button>
                 </form>
