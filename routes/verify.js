@@ -16,8 +16,8 @@ const run = (req, res) => {
       if (password == dbPassword) {
         console.log("correct");
         res.cookie("session", userid );
-        res.setHeader("200", {"Content-Type" : "plain/html"});
-        res.send("Your password is correct!");
+        res.redirect("/display");
+        res.end();
         
       } else {
         console.log("incorrect");
