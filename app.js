@@ -6,7 +6,7 @@ const verifyPage = require('./routes/verify');
 const formPage = require('./routes/new');
 const createPage = require('./routes/create');
 //const displayPage = require('./routes/displayItem');
-//const readPage = require('./routes/read');
+const readPage = require('./routes/read');
 
 const app = express();
 
@@ -26,7 +26,7 @@ app.post("/verify", verifyPage);
 app.get("/new", formPage);
 app.post("/create", createPage);
 //app.get("/display", displayPage);
-//app.get("/read", readPage);
+app.get("/read", readPage);
 
 /* handle other pathname
 app.get('/*',(req,res)=>{ 

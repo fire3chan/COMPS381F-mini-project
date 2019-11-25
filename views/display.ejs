@@ -5,10 +5,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Display</title>
+    <title>Display Restaurants</title>
     <link rel="stylesheet" href="/bootstrap_css/bootstrap.css" />
     <link rel="stylesheet" href="/stylesheets/common.css" />
     <link rel="stylesheet" href="/stylesheets/display.css" />
+	
+	<style>
+			body {
+				background-color: #f9f9f9;
+			}
+			
+			.logo {
+				width: 3em;
+			}
+
+			.header {
+				font-size: 2em;
+				padding: 0;
+			}
+
+			.login-ctn {
+				margin-top: 2em;
+			}
+	</style>
+	
 </head>
 
 <body>
@@ -20,7 +40,7 @@
             <h1 class="col-10 header d-flex justify-content-md-center align-items-center">Display restaurant</h1>
             <div class="col-12">
                 <div>User: <%= sessionName %></div>
-                <div>Showing <%= photos.length %> documents (criteria: {<%= criteria %>})</div>
+                <div>Showing <%= restaurants.length %> documents (criteria: <%= criteria %>)</div>
             </div>
             <div class="col-12">
                 <button type="button" class="btn btn-outline-primary">Create Document</button>
@@ -28,22 +48,13 @@
             
             <div class="col-12">
                     <div class="list-group">
-                        <!--<div class="list-group-item">
-								<div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">List group item heading</h5>
-                            </div>
-                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                            
-                        </div>-->
                         <ol>
-							<% for (i in photos) { %>
-								<li><a href=/display?_id=<%= photos[i]._id%>><%=photos[i].title%></a></li>
+							<% for (i in restaurants) { %>
+								<li><a href="/display?_id=<%= restaurants[i]._id%>"><%=restaurants[i].name%></a></li>
 							<% } %>
 						</ol>
                     </div>
             </div>
-            
-
         </div>
     </div>
 

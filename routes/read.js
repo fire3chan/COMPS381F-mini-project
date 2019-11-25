@@ -1,5 +1,6 @@
 const assert = require("assert");
 const MongoClient = require("mongodb").MongoClient;
+const url  = require('url');
 
 const run = (req, res) => {
 
@@ -8,47 +9,42 @@ const run = (req, res) => {
     const dbName = "test";
     const client = new MongoClient(dbLink);
 
-    client.connect((err) => {
-        assert.equal(null, err);
-        console.log("successful to connect to db!");
+	let parsedURL = url.parse(req.url,true); // true to get query as object 
+	let criteria = parsedURL.query;  //get searching criteria
+	
+		client.connect((err) => {
+			assert.equal(null, err);
+			console.log("successful to connect to db!");
 
-        const db = client.db(dbName);
-		
-		findRestaurants(db, max, criteria, (restaurants) => {
-			client.close();
+			const db = client.db(dbName);
+							
+			findRestaurants(db, criteria, (restaurants) => {
+				client.close();
+				
+				//restaurants = search result
+				res.render('display.ejs',{			
+					sessionName : 'demo',
+					//restaurants.length : restaurants.length,
+					criteria : JSON.stringify(criteria),
+					//define the restaurants array = restaurants return search result
+					restaurants : restaurants		
+				})	
+			})
 			
-			res.render('display.ejs',{			
-				sessionName = ;
-				count =;
-				critera =;
-				items= ;
-				'<div class="list-group-item">'+					
-                '<p class="mb-1">'+'<a href=/display?_id='+doc._id+'">'+doc.name+'</a>'+'</p>'                      
-                +'</div>';				
-			})	
 		})
-    })
-  }/*else {
-		res.writeHead(404, {"Content-Type": "text/html"});
-		res.write('<html><body>');
-		res.write(`${doc} : Invalid document!\n`);
-		res.end('<br><a href=/read>Home</a>');	
-	}*/
+		
+}
 
-	const findRestaurants = (db, max, criteria, callback) => {
-		//console.log(`findRestaurants(), criteria = ${JSON.stringify(criteria)}`);
-		let criteriaObj = {};
-		try {
-			criteriaObj = JSON.parse(criteria);
-		} catch (err) {
-			console.log('Invalid criteria!  Default to {}');
-		}
-		cursor = db.collection('prorestaurant').find(criteriaObj).sort({name: -1}); 
-		cursor.toArray((err,docs) => {
+	const findRestaurants = (db, criteria, callback) => {
+		cursor = db.collection('prorestaurant').find(criteria).sort({name: -1}); 	
+		let restaurants = [];		
+		cursor.forEach((doc) => {
+			restaurants.push(doc);
+		}, (err) => {
+			// done or error
 			assert.equal(err,null);
-			//console.log(docs);
-			callback(docs);
-		});
+			callback(restaurants);
+		})
 	}
 		
 	
