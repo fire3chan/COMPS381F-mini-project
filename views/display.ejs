@@ -40,14 +40,30 @@
             <h1 class="col-10 header d-flex justify-content-md-center align-items-center">Display restaurant</h1>
             <div class="col-12">
                 <div>User: <%= sessionName %></div>
+
                 <div>Showing <%= restaurants.length %> documents (criteria: <%= criteria %>)</div>
+
             </div>
             <div class="col-12">
                 <button type="button" class="btn btn-outline-primary">Create Document</button>
             </div>
             
-            <div class="col-12">
+            <!--div class="col-12">
                     <div class="list-group">
+
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">List group item heading</h5>
+                            </div>
+                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                            
+                        </div>
+                        
+                    </div>
+            </div-->
+            
+
+
                         <ol>
 							<% for (i in restaurants) { %>
 								<li><a href="/display?_id=<%= restaurants[i]._id%>"><%=restaurants[i].name%></a></li>
@@ -55,6 +71,7 @@
 						</ol>
                     </div>
             </div>
+
         </div>
     </div>
 
