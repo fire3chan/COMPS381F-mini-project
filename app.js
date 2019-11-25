@@ -1,7 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const indexPage = require('./routes/index');
 const verifyPage = require('./routes/verify');
+const formPage = require('./routes/new');
+const createPage = require('./routes/create');
+//const displayPage = require('./routes/displayItem');
+//const readPage = require('./routes/read');
 
 const app = express();
 
@@ -17,6 +22,15 @@ app.use('/bootstrap_js', express.static(__dirname + '/node_modules/bootstrap/dis
 
 // path handling
 app.get("/", indexPage);
-app.post("/verify",   verifyPage);
+app.post("/verify", verifyPage);
+app.get("/new", formPage);
+app.post("/create", createPage);
+//app.get("/display", displayPage);
+//app.get("/read", readPage);
+
+/* handle other pathname
+app.get('/*',(req,res)=>{ 
+	res.status(500).render('Invalid Pathname!');
+});*/
 
 app.listen(process.env.PORT || 8099);
