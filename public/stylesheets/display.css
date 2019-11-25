@@ -1,0 +1,27 @@
+.header-bar {
+    background-color: #c5c5c5;
+}
+
+.header {
+    margin: 0.5em 0;
+}
+
+.criteria {
+    margin: 0.3em 0;
+}
+
+.create-doc-btn, .restaurant-item {
+    margin: 0.5em 0;
+}
+
+.restaurant-item-name {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.restaurant-item-desc:hover {
+}
+
+.restaurant-icon {
+    width: 1.3em;
+}
