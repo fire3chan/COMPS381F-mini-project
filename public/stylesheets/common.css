@@ -9,3 +9,7 @@ body {
 .logo {
     width: 3em;
 }
+
+.header-bar {
+    background-color: #c5c5c5;
+}

@@ -31,14 +31,12 @@ const run = (req, res) => {
 					//define the restaurants array = restaurants return search result
 					restaurants: restaurants
 				});
-				// res.end();
 			});
 
 		});
 
 	} else {
 		res.redirect("/");
-		// res.end();
 	}
 
 }
