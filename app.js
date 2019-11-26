@@ -5,8 +5,9 @@ const indexPage = require('./routes/index');
 const verifyPage = require('./routes/verify');
 const formPage = require('./routes/new');
 const createPage = require('./routes/create');
-//const displayPage = require('./routes/displayItem');
+const displayPage = require('./routes/displayItem');
 const readPage = require('./routes/read');
+const showMap = require('./routes/showMap');
 
 const app = express();
 
@@ -25,8 +26,9 @@ app.get("/", indexPage);
 app.post("/verify", verifyPage);
 app.get("/new", formPage);
 app.post("/create", createPage);
-//app.get("/display", displayPage);
+app.get("/display", displayPage);
 app.get("/read", readPage);
+app.get("/gmap", showMap);
 
 /* handle other pathname
 app.get('/*',(req,res)=>{ 

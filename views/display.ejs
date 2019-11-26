@@ -37,7 +37,7 @@
             <div class="col-2 logo-ctn d-flex justify-content-md-center">
                 <img class="logo" src="/images/fork.svg" />
             </div>
-            <h1 class="col-10 header d-flex justify-content-md-center align-items-center">Display restaurant</h1>
+            <h1 class="col-10 header d-flex justify-content-md-center align-items-center">Display Restaurants</h1>
             <div class="col-12">
                 <div>User: <%= sessionName %></div>
                 <div>Showing <%= restaurants.length %> documents (criteria: <%= criteria %>)</div>
@@ -47,13 +47,13 @@
             </div>
             
             <div class="col-12">
-                    <div class="list-group">
-                        <ol>
-							<% for (i in restaurants) { %>
-								<li><a href="/display?_id=<%= restaurants[i]._id%>"><%=restaurants[i].name%></a></li>
-							<% } %>
-						</ol>
-                    </div>
+                <div class="list-group">
+                    <ol>
+						<% for (i in restaurants) { %>
+							<li><a href="/display?_id=<%= restaurants[i]._id%>"><%=restaurants[i].name%></a></li>
+						<% } %>
+					</ol>
+                </div>
             </div>
         </div>
     </div>

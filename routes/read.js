@@ -24,7 +24,6 @@ const run = (req, res) => {
 				//restaurants = search result
 				res.render('display.ejs',{			
 					sessionName : 'demo',
-					//restaurants.length : restaurants.length,
 					criteria : JSON.stringify(criteria),
 					//define the restaurants array = restaurants return search result
 					restaurants : restaurants		
