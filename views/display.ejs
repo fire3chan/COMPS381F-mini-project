@@ -9,40 +9,41 @@
     <link rel="stylesheet" href="/bootstrap_css/bootstrap.css" />
     <link rel="stylesheet" href="/stylesheets/common.css" />
     <link rel="stylesheet" href="/stylesheets/display.css" />
-	
-	<style>
-			body {
-				background-color: #f9f9f9;
-			}
-			
-			.logo {
-				width: 3em;
-			}
 
-			.header {
-				font-size: 2em;
-				padding: 0;
-			}
-
-			.login-ctn {
-				margin-top: 2em;
-			}
-	</style>
-	
 </head>
 
 <body>
+    <div class="header-bar">
+        <div class="container">
+            <nav class="row">
+                <div class="col-6 logo-ctn">
+                    <img class="logo" src="/images/fork.svg" />
+                </div>
+                <div class="col-6 d-flex justify-content-end align-items-center">
+                    Hello user: <%= sessionName %>
+                </div>
+            </nav>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
-            <div class="col-2 logo-ctn d-flex justify-content-md-center">
-                <img class="logo" src="/images/fork.svg" />
+            <h1 class="col-12 header d-flex justify-content-md-center align-items-center">Display restaurant</h1>
+            <div class="col-12 criteria">
+                <div>Showing <%= length %> documents (criteria: <%= criteria %>)</div>
             </div>
+<<<<<<< HEAD
             <h1 class="col-10 header d-flex justify-content-md-center align-items-center">Display Restaurants</h1>
             <div class="col-12">
                 <div>User: <%= sessionName %></div>
                 <div>Showing <%= restaurants.length %> documents (criteria: <%= criteria %>)</div>
+=======
+            <div class="col-12 create-doc-btn">
+                <a href="/new" class="btn btn-outline-primary">Create Document</a>
+>>>>>>> 498d0df767a48bef60c6810c2eb6f08edc5717d4
             </div>
+
             <div class="col-12">
+<<<<<<< HEAD
                 <button type="button" class="btn btn-outline-primary">Create Document</button>
             </div>
             
@@ -53,6 +54,30 @@
 							<li><a href="/display?_id=<%= restaurants[i]._id%>"><%=restaurants[i].name%></a></li>
 						<% } %>
 					</ol>
+=======
+                <div class="list-group">
+                    <% console.log(restaurants);for (i in restaurants) {  %>
+                    <div class="restaurant-item">
+                        <div class="list-group-item">
+
+                            <a class="restaurant-item-name d-block" href="/display?_id=<%= restaurants[i]._id %>">
+                                <%=restaurants[i].name%>
+                            </a>
+                            <div class="restaurant-item-desc">
+                                <div class="mb-1">
+                                    <img class="restaurant-icon" src="/images/address_pin.svg" />
+                                    <%= restaurants[i].building + ", " + restaurants[i].street %>
+                                </div>
+                                <div class="mb-1">
+                                    <img class="restaurant-icon" src="/images/price_tag.svg" />
+                                    <%= restaurants[i].cuisine %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% } %>
+>>>>>>> 498d0df767a48bef60c6810c2eb6f08edc5717d4
                 </div>
             </div>
         </div>
