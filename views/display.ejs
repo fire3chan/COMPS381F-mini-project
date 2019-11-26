@@ -31,30 +31,11 @@
             <div class="col-12 criteria">
                 <div>Showing <%= length %> documents (criteria: <%= criteria %>)</div>
             </div>
-<<<<<<< HEAD
-            <h1 class="col-10 header d-flex justify-content-md-center align-items-center">Display Restaurants</h1>
-            <div class="col-12">
-                <div>User: <%= sessionName %></div>
-                <div>Showing <%= restaurants.length %> documents (criteria: <%= criteria %>)</div>
-=======
             <div class="col-12 create-doc-btn">
                 <a href="/new" class="btn btn-outline-primary">Create Document</a>
->>>>>>> 498d0df767a48bef60c6810c2eb6f08edc5717d4
             </div>
 
             <div class="col-12">
-<<<<<<< HEAD
-                <button type="button" class="btn btn-outline-primary">Create Document</button>
-            </div>
-            
-            <div class="col-12">
-                <div class="list-group">
-                    <ol>
-						<% for (i in restaurants) { %>
-							<li><a href="/display?_id=<%= restaurants[i]._id%>"><%=restaurants[i].name%></a></li>
-						<% } %>
-					</ol>
-=======
                 <div class="list-group">
                     <% console.log(restaurants);for (i in restaurants) {  %>
                     <div class="restaurant-item">
@@ -77,7 +58,6 @@
                     </div>
 
                     <% } %>
->>>>>>> 498d0df767a48bef60c6810c2eb6f08edc5717d4
                 </div>
             </div>
         </div>

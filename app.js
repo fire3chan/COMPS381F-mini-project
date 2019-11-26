@@ -6,10 +6,6 @@ const loginPage = require('./routes/login');
 const verifyPage = require('./routes/verify');
 const formPage = require('./routes/new');
 const createPage = require('./routes/create');
-<<<<<<< HEAD
-const displayPage = require('./routes/displayItem');
-=======
->>>>>>> 498d0df767a48bef60c6810c2eb6f08edc5717d4
 const readPage = require('./routes/read');
 const showMap = require('./routes/showMap');
 
@@ -31,10 +27,6 @@ app.get("/", loginPage);
 app.post("/verify", verifyPage);
 app.get("/new", formPage);
 app.post("/create", createPage);
-<<<<<<< HEAD
-app.get("/display", displayPage);
-=======
->>>>>>> 498d0df767a48bef60c6810c2eb6f08edc5717d4
 app.get("/read", readPage);
 app.get("/gmap", showMap);
 
