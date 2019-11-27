@@ -37,7 +37,10 @@
 
             <div class="col-12">
                 <div class="list-group">
-                    <% for (i in restaurants) {  %>
+                    <% 
+                    
+                    for (i in restaurants) {  
+                        %>
                     <div class="restaurant-item">
                         <div class="list-group-item">
 
@@ -54,10 +57,17 @@
                                     <%= restaurants[i].cuisine %>
                                 </div>
                             </div>
+                            <% if ((restaurants[i].owner) == sessionName){%>
+
+                                <a href="/gotoUpdate?_id=<%= restaurants[i]._id %>" class="btn btn-outline-primary">Update </a>
+
+                            <% } %>
+                           
                         </div>
                     </div>
 
                     <% } %>
+                
                 </div>
             </div>
         </div>
