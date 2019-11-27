@@ -40,8 +40,8 @@ const run = (req, res) => {
 
 		if (photo.size === 0) {
 			console.log("No file");
-			res.writeHead("500", { "Content-Type": "plain/html" });
-			res.send("No file uploaded!");
+			res.set("Content-Type", "text/plain");
+			res.status(500).send("No file uploaded!");
 			res.end();
 			return;
 		}
@@ -49,8 +49,8 @@ const run = (req, res) => {
 		if (photo.type) {
 			//check upload file is image
 			if (!photo.type.match(/^image/)) {
-				res.writeHead("500", { "Content-Type": "plain/html" });
-				res.send("Upload file not image!");
+				res.set("Content-Type", "text/plain");
+				res.status(500).send("Upload file is not image!");
 				res.end();
 				return;
 			}
@@ -65,8 +65,8 @@ const run = (req, res) => {
 				try {
 					assert.equal(err, null);
 				} catch (err) {
-					res.writeHead(500, { "Content-Type": "plain/html" });
-					res.send("MongoClient connect() failed!");
+					res.set("Content-Type", "text/plain");
+					res.status(500).send("MongoClient connect() failed!");
 					res.end();
 					return;
 				}

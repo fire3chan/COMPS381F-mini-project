@@ -21,8 +21,8 @@ const run = (req, res) => {
 
     } else {
       console.log("incorrect");
-      res.writeHead(200, { "Content-Type": "plain/html" });
-      res.send("Your password is not correct!");
+      res.set("Content-Type", "text/plain");
+      res.status(500).send("Your password is not correct!");
       res.end();
     }
   };
@@ -36,8 +36,8 @@ const run = (req, res) => {
     let cursor = db.collection('user').find({ "userid": userid }).limit(1);
     cursor.count((error, count) => {
       if (count == 0) {
-        res.writeHead(200, { "Content-Type": "plain/html" });
-        res.send("Your userid does not exist!");
+        res.set("Content-Type", "text/plain");
+        res.status(500).send("Your userid does not exist!");
         res.end();
       } else {
         cursor.forEach((doc) => {
