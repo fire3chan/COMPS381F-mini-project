@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Display Restaurants</title>
+    <link rel="stylesheet" href="/bootstrap_css/bootstrap.css" />
+    <link rel="stylesheet" href="/stylesheets/common.css" />
+    <link rel="stylesheet" href="/stylesheets/display.css" />
+
+</head>
+
+<body>
+    <div class="header-bar">
+        <div class="container">
+            <nav class="row">
+                <div class="col-6 logo-ctn">
+                    <img class="logo" src="/images/fork.svg" />
+                </div>
+                <div class="col-6 d-flex justify-content-end align-items-center">
+                    Hello user: <%= sessionName %>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <h1 class="col-12 header d-flex justify-content-md-center align-items-center">Display restaurant</h1>
+            <div class="col-12 criteria">
+                <div>Showing <%= length %> documents (criteria: <%= criteria %>)</div>
+            </div>
+            <div class="col-12 create-doc-btn">
+                <a href="/new" class="btn btn-outline-primary">Create Document</a>
+            </div>
+
+            <div class="col-12">
+                <div class="list-group">
+                    <% for (i in restaurants) {  %>
+                    <div class="restaurant-item">
+                        <div class="list-group-item">
+
+                            <a class="restaurant-item-name d-block" href="/display?_id=<%= restaurants[i]._id %>">
+                                <%=restaurants[i].name%>
+                            </a>
+                            <div class="restaurant-item-desc">
+                                <div class="mb-1">
+                                    <img class="restaurant-icon" src="/images/address_pin.svg" />
+                                    <%= restaurants[i].building + ", " + restaurants[i].street %>
+                                </div>
+                                <div class="mb-1">
+                                    <img class="restaurant-icon" src="/images/price_tag.svg" />
+                                    <%= restaurants[i].cuisine %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/bootstrap_js/bootstrap.js" type="text/javascript"></script>
+</body>
+
+</html>

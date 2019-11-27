@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Show a Restaurant</title>
+		<link rel="stylesheet" href="/bootstrap_css/bootstrap.css" />
+		
+		<style>
+			body {
+				background-color: #f9f9f9;
+			}
+			
+			.logo {
+				width: 3em;
+			}
+
+			.header {
+				font-size: 2em;
+				padding: 0;
+			}
+
+			.login-ctn {
+				margin-top: 2em;
+			}
+		</style>
+		
+		<script>
+		function goBack() {window.history.back();}
+		</script>
+		
+	</head>
+	
+	<body>
+
+	<div class="container">
+        <div class="row">
+            <div class="col-12 logo-ctn text-center">
+                <img class="logo" src="/images/fork.svg" />
+            </div>
+			
+			 <h1 class="col-12 header text-center"><%= restaurants[0].name %></h1>
+			 
+			<!--<div class="col-12">
+			 <img src=" data:<%= mimetype %>;base64, <%= photo %>" style="width:100%">
+			</div>-->
+	
+			<div class="col-12">	
+				<p><label>Borough: </label><%=restaurants[0].borough%></p>
+				<p><label>Cuisine: </label><%=restaurants[0].cuisine%></p>
+				<p><label>Street: </label><%=restaurants[0].street%></p>
+				<p><label>Building: </label><%=restaurants[0].building%></p>
+				<p><label>Zipcode: </label><%=restaurants[0].zipcode%></p>
+				<p><label>GPS: </label><%=restaurants[0].lat%>,<%=restaurants[0].lon%></p>
+				<p><label>Rating: </label><%=restaurants[0].rate%></p>
+				<p><label>Created by: </label><%=owner%></p>
+			</div>
+			
+			<p><a href=<%=showMap%>>Map</a></p>
+			
+			<div class="col-12">
+			<a href=<%=rateWithId%> style="text-decoration:none">
+			<button class="btn btn-primary">Rate</button>
+			</a>
+			<a href=<%=editWithId%> style="text-decoration:none">
+			<button class="btn btn-primary">Edit</button>
+			</a>
+			<a href=<%=delWithId%> style="text-decoration:none">
+			<button class="btn btn-primary">Delete</button>
+			</a>
+			
+			<button class="btn btn-primary" onClick="goBack()">Go Back</button>
+			</div>
+		</div>
+	</div>
+	
+	</body>
+</html>
