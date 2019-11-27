@@ -1,3 +1,4 @@
+/* login page */
 .header {
     font-size: 2em;
     padding: 0;
@@ -29,4 +30,9 @@
     display: block;
     width: 100%;
     text-align: center;
+}
+
+/* message page */
+.message-ctn {
+    margin: 1em 0;
 }

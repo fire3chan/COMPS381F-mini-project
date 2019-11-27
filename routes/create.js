@@ -17,6 +17,7 @@ const run = (req, res) => {
 	const insertRestaurant = (db, restaurant, callback) => {
 		db.collection('prorestaurant').insertOne(restaurant, (err, result) => {
 			assert.equal(err, null);
+
 			console.log("insert was successful!");
 			console.log(JSON.stringify(result));
 			callback();
@@ -40,8 +41,11 @@ const run = (req, res) => {
 
 		if (photo.size === 0) {
 			console.log("No file");
-			res.set("Content-Type", "text/plain");
-			res.status(500).send("No file uploaded!");
+			res.render("message.ejs", {
+				message: "No file uploaded!",
+				buttonLink: "/read",
+				buttonText: "Back"
+			});
 			res.end();
 			return;
 		}
@@ -85,9 +89,13 @@ const run = (req, res) => {
 					restaurant['owner'] = req.cookies.session;
 
 					insertRestaurant(db, restaurant, () => {
-						res.send("Restaurant was inserted into MongoDB!");
-						client.close();
+						res.render("message.ejs", {
+							message: "Restaurant was inserted into MongoDB!",
+							buttonLink: "/read",
+							buttonText: "Back"
+						});
 						res.end();
+						client.close();
 
 					});
 				});
