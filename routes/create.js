@@ -3,11 +3,10 @@ const MongoClient = require("mongodb").MongoClient;
 const fs = require('fs'); //require file system
 const formidable = require('formidable');
 
-
 const run = (req, res) => {
 
 	const dbLink = 'mongodb://student:std9870@cluster0-shard-00-00-pdydm.mongodb.net:27017,cluster0-shard-00-01-pdydm.mongodb.net:27017,cluster0-shard-00-02-pdydm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
-	//const dbLink = "mongodb+srv://firework:dark0411@cluster0-sbkrx.azure.mongodb.net/test?retryWrites=true&w=majority";
+
 	const dbName = "test";
 	const client = new MongoClient(dbLink);
 
@@ -41,7 +40,7 @@ const run = (req, res) => {
 
 		if (photo.size === 0) {
 			console.log("No file");
-			res.setHeader("500", { "Content-Type": "plain/html" });
+			res.writeHead("500", { "Content-Type": "plain/html" });
 			res.send("No file uploaded!");
 			res.end();
 			return;
@@ -50,7 +49,7 @@ const run = (req, res) => {
 		if (photo.type) {
 			//check upload file is image
 			if (!photo.type.match(/^image/)) {
-				res.setHeader("500", { "Content-Type": "plain/html" });
+				res.writeHead("500", { "Content-Type": "plain/html" });
 				res.send("Upload file not image!");
 				res.end();
 				return;
@@ -86,16 +85,9 @@ const run = (req, res) => {
 					restaurant['owner'] = req.cookies.session;
 
 					insertRestaurant(db, restaurant, () => {
-						// res.setHeader("Content-Type", "plain/html");
-						// console.log("write head");
-						// res.writeHead(200);
-						// console.log("send");
-						// res.send("Restaurant was inserted into MongoDB!");
-						// console.log("close");
+						res.send("Restaurant was inserted into MongoDB!");
 						client.close();
-						// console.log("end");
-						res.status(200).end('Restaurant was inserted into MongoDB!');
-						// res.end();
+						res.end();
 
 					});
 				});

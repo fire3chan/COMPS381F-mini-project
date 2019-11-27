@@ -21,10 +21,10 @@ const run = (req, res) => {
 
     } else {
       console.log("incorrect");
-      res.setHeader("200", { "Content-Type": "plain/html" });
+      res.writeHead(200, { "Content-Type": "plain/html" });
       res.send("Your password is not correct!");
+      res.end();
     }
-    res.end();
   };
 
   client.connect((err) => {
@@ -36,7 +36,7 @@ const run = (req, res) => {
     let cursor = db.collection('user').find({ "userid": userid }).limit(1);
     cursor.count((error, count) => {
       if (count == 0) {
-        res.setHeader("200", { "Content-Type": "plain/html" });
+        res.writeHead(200, { "Content-Type": "plain/html" });
         res.send("Your userid does not exist!");
         res.end();
       } else {
