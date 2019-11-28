@@ -28,7 +28,8 @@ const run = (req, res) => {
 					photo : "",
 					//define the restaurants array = restaurants return search result
 					restaurants : restaurants,
-					showMap : "/gmap?lat="+restaurants[0].lat+"&lon="+restaurants[0].lon+"&name="+restaurants[0].name,
+					//showMap : "/gmap?lat="+restaurants[0].lat+"&lon="+restaurants[0].lon+"&name="+restaurants[0].name,
+					showMap : "/gmap?lat="+restaurants[0].lat+"&lon="+restaurants[0].lon,
 					rateWithId	:"/rate?_id="+restaurants[0]._id,
 					editWithId  :"/edit?_id="+restaurants[0]._id,
 					delWithId	:"/delete?_id="+restaurants[0]._id		
