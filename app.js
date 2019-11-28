@@ -9,6 +9,8 @@ const createPage = require('./routes/create');
 const displayPage = require('./routes/displayItem');
 const readPage = require('./routes/read');
 const showMap = require('./routes/showMap');
+const updatePage = require('./routes/update');	
+const gotoUpdatePage = require('./routes/gotoUpdate');
 
 const app = express();
 
@@ -31,6 +33,8 @@ app.post("/create", createPage);
 app.get("/display", displayPage);	 
 app.get("/read", readPage);
 app.get("/gmap", showMap);
+app.post("/update", updatePage);	
+app.get("/gotoUpdate", gotoUpdatePage);
 
 /* handle other pathname
 app.get('/*',(req,res)=>{ 
