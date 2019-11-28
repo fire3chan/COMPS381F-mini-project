@@ -4,12 +4,11 @@ const run = (req, res) => {
 
 	res.render("leafMap.ejs", {
 		lat:req.query.lat,
-		lon:req.query.lon,
-		zoom:req.query.zoom ? req.query.zoom : 15
+		lon:req.query.lon
 	});
 	res.end();
 	
 };
-
+ 
 
 module.exports = run;
