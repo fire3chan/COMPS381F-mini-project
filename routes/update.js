@@ -8,36 +8,36 @@ const ObjectID = require('mongodb').ObjectID;
 const run = (req, res) => {
 
 	const dbLink = 'mongodb://student:std9870@cluster0-shard-00-00-pdydm.mongodb.net:27017,cluster0-shard-00-01-pdydm.mongodb.net:27017,cluster0-shard-00-02-pdydm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
-	//const dbLink = "mongodb+srv://firework:dark0411@cluster0-sbkrx.azure.mongodb.net/test?retryWrites=true&w=majority";
+
 	const dbName = "test";
 	const client = new MongoClient(dbLink);
 
 	let form = new formidable.IncomingForm();
-    let restaurant={};
+	let restaurant = {};
 
 
 	form.parse(req, (err, fields, files) => {
-        assert.equal(err, null);
-        
+		assert.equal(err, null);
+
 		console.log('Fields', fields);
 		let photo = files.photo;
 		console.log(photo);
-        let filename = photo.path;
-        let abc = new ObjectID(fields._id);
-        
-        
-        const updateRestaurant = (db, restaurant, callback) => {
-            console.log(fields._id);
-            db.collection('prorestaurant').updateOne({ "_id" : abc}, {$set: restaurant}, (err, result) => {
-                assert.equal(err, null); 
-                console.log("update was successful!");
-                console.log(JSON.stringify(result));
-                 callback();
-            });
-        }
-    
-    
-    
+
+		let filename = photo.path;
+		let restaurantIdObj = new ObjectID(fields._id);
+
+
+		const updateRestaurant = (db, restaurant, callback) => {
+			db.collection('prorestaurant').updateOne({ "_id": restaurantIdObj }, { $set: restaurant }, (err, result) => {
+				assert.equal(err, null);
+				console.log("update was successful!");
+				console.log(JSON.stringify(result));
+				callback();
+			});
+		}
+
+
+
 		if (photo.size === 0) {
 			console.log("No file");
 			res.setHeader("500", { "Content-Type": "plain/html" });
@@ -47,7 +47,7 @@ const run = (req, res) => {
 		}
 
 		if (photo.type) {
-		
+
 			if (!photo.type.match(/^image/)) {
 				res.setHeader("500", { "Content-Type": "plain/html" });
 				res.send("Upload file not image!");
@@ -70,28 +70,28 @@ const run = (req, res) => {
 					res.end();
 					return;
 				}
-                // restaurant['restaurant_id'] = result;
-                restaurant['name'] = fields.name;
-                restaurant['borough'] = fields.borough;
-                restaurant['cuisine'] = fields.cuisine;
-                restaurant.address = {};
-                restaurant.address['street'] = fields.street;
-                restaurant.address['building'] = fields.building;
-                restaurant.address['zipcode'] = fields.zipcode;
-                restaurant.address['coord'] = fields.latitude + ", " + fields.longitude;
-                restaurant['owner'] = req.cookies.session;
+
+				restaurant['name'] = fields.name;
+				restaurant['borough'] = fields.borough;
+				restaurant['cuisine'] = fields.cuisine;
+				restaurant.address = {};
+				restaurant.address['street'] = fields.street;
+				restaurant.address['building'] = fields.building;
+				restaurant.address['zipcode'] = fields.zipcode;
+				restaurant.address['coord'] = fields.latitude + ", " + fields.longitude;
+				restaurant['owner'] = req.cookies.session;
 
 
-                const db = client.db(dbName);
-                updateRestaurant(db, restaurant, () => {
-                    
-                    client.close();
-                   
-                    res.status(200).end('Restaurant was updated!');
-              
+				const db = client.db(dbName);
+				updateRestaurant(db, restaurant, () => {
 
-                });
-				
+					client.close();
+
+					res.status(200).end('Restaurant was updated!');
+
+
+				});
+
 			})
 		});
 
