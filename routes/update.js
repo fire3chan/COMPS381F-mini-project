@@ -13,43 +13,31 @@ const run = (req, res) => {
 	const client = new MongoClient(dbLink);
 
 	let form = new formidable.IncomingForm();
-
-    let restaurant = {};
-    
-    
-	
-
+    let restaurant={};
 
 
 	form.parse(req, (err, fields, files) => {
-		assert.equal(err, null);
-
+        assert.equal(err, null);
+        
 		console.log('Fields', fields);
 		let photo = files.photo;
 		console.log(photo);
         let filename = photo.path;
+        let abc = new ObjectID(fields._id);
         
-
+        
         const updateRestaurant = (db, restaurant, callback) => {
-            db.collection('prorestaurant').updateOne({"_id":fields._id}, restaurant, (err, result) => {
-                assert.equal(err, null);
+            console.log(fields._id);
+            db.collection('prorestaurant').updateOne({ "_id" : abc}, {$set: restaurant}, (err, result) => {
+                assert.equal(err, null); 
                 console.log("update was successful!");
                 console.log(JSON.stringify(result));
-                // callback();
+                 callback();
             });
         }
-        // const getRestaurantId = (db, callback) => {
-   
-        //     db.collection('prorestaurant').update({"_id":fields._id},(error, results) => {
-        //         assert.equal(error, null);
-        //         console.log(results)
-        //         callback();
-        //     }
-        //     );
-        // };
     
     
-
+    
 		if (photo.size === 0) {
 			console.log("No file");
 			res.setHeader("500", { "Content-Type": "plain/html" });
@@ -59,7 +47,7 @@ const run = (req, res) => {
 		}
 
 		if (photo.type) {
-			//check upload file is image
+		
 			if (!photo.type.match(/^image/)) {
 				res.setHeader("500", { "Content-Type": "plain/html" });
 				res.send("Upload file not image!");
@@ -96,23 +84,14 @@ const run = (req, res) => {
 
                 const db = client.db(dbName);
                 updateRestaurant(db, restaurant, () => {
-                    // res.setHeader("Content-Type", "plain/html");
-                    // console.log("write head");
-                    // res.writeHead(200);
-                    // console.log("send");
-                    // res.send("Restaurant was inserted into MongoDB!");
-                    // console.log("close");
+                    
                     client.close();
-                    // console.log("end");
-                    res.status(200).end('Restaurant was inserted into MongoDB!');
-                    // res.end();
+                   
+                    res.status(200).end('Restaurant was updated!');
+              
 
                 });
-				// getRestaurantId(db, (result) => {
 				
-					
-                // });
-                // getRestaurantId(db, ()=>{});
 			})
 		});
 
