@@ -6,6 +6,7 @@ const loginPage = require('./routes/login');
 const verifyPage = require('./routes/verify');
 const formPage = require('./routes/new');
 const createPage = require('./routes/create');
+const displayPage = require('./routes/displayItem');
 const readPage = require('./routes/read');
 const showMap = require('./routes/showMap');
 
