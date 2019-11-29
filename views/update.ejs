@@ -20,6 +20,9 @@
 				</div>
 				<div class="col-6 d-flex justify-content-end align-items-center">
 					Hello user: <%= sessionName %>
+					<form action="/message" method="POST" class="logout-form">
+						<input name="action" value="logout" class="btn btn-outline-primary" type="submit">
+					</form>
 				</div>
 			</nav>
 		</div>
@@ -33,10 +36,10 @@
 					<div class="basic-info-div">
 						Basic info
 					</div>
-                  
+
 					<div class="form-group col-12">
 						<p>
-							<input type = "hidden" value="<%= _id %>" name="_id" id="_id">
+							<input type="hidden" value="<%= _id %>" name="_id" id="_id">
 							<label for="name">Name</label>
 							<input id="name" name="name" class="form-control" type="text" required>
 						</p>
