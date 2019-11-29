@@ -40,8 +40,11 @@ const run = (req, res) => {
 
 		if (photo.size === 0) {
 			console.log("No file");
-			res.setHeader("500", { "Content-Type": "plain/html" });
-			res.send("No file uploaded!");
+			res.render("message.ejs", {
+				message: "No file uploaded!",
+				buttonLink: "Back",
+				buttonText: "Back"
+			});
 			res.end();
 			return;
 		}
@@ -49,8 +52,11 @@ const run = (req, res) => {
 		if (photo.type) {
 
 			if (!photo.type.match(/^image/)) {
-				res.setHeader("500", { "Content-Type": "plain/html" });
-				res.send("Upload file not image!");
+				res.render("message.ejs", {
+					message: "Upload file not image!",
+					buttonLink: "Back",
+					buttonText: "Back"
+				});
 				res.end();
 				return;
 			}
@@ -65,8 +71,11 @@ const run = (req, res) => {
 				try {
 					assert.equal(err, null);
 				} catch (err) {
-					res.writeHead(500, { "Content-Type": "plain/html" });
-					res.send("MongoClient connect() failed!");
+					res.render("message.ejs", {
+						message: "MongoClient connect() failed!",
+						buttonLink: "Back",
+						buttonText: "Back"
+					});
 					res.end();
 					return;
 				}
@@ -84,11 +93,13 @@ const run = (req, res) => {
 
 				const db = client.db(dbName);
 				updateRestaurant(db, restaurant, () => {
-
+					res.render("message.ejs", {
+						message: "Restaurant was updated!",
+						buttonLink: "/read",
+						buttonText: "Home"
+					});
+					res.end();
 					client.close();
-
-					res.status(200).end('Restaurant was updated!');
-
 
 				});
 
