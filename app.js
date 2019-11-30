@@ -12,6 +12,8 @@ const showMap = require('./routes/showMap');
 const updatePage = require('./routes/update');
 const gotoUpdatePage = require('./routes/gotoUpdate');
 const messagePage = require('./routes/message');
+const rateFormPage = require('./routes/rateForm');
+const ratePage = require('./routes/rate');
 
 const app = express();
 
@@ -37,6 +39,8 @@ app.get("/gmap", showMap);
 app.post("/update", updatePage);
 app.get("/gotoUpdate", gotoUpdatePage);
 app.post("/message", messagePage);
+app.get("/rateForm", rateFormPage);
+app.post("/rate", ratePage);
 
 /* handle other pathname
 app.get('/*',(req,res)=>{ 
