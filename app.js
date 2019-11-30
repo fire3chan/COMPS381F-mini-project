@@ -9,6 +9,7 @@ const readPage = require('./routes/read');
 const showMap = require('./routes/showMap');
 const updatePage = require('./routes/update');
 const gotoUpdatePage = require('./routes/gotoUpdate');
+const deletePage = require('./routes/delete');
 
 
 const app = express();
@@ -17,7 +18,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 // static file setting
 app.use(express.static(__dirname + '/public'));
@@ -33,8 +34,7 @@ app.get("/read", readPage);
 app.get("/gmap", showMap);
 app.post("/update", updatePage);
 app.get("/gotoUpdate", gotoUpdatePage);
-
-
+app.get("/delete", deletePage);
 
 /* handle other pathname
 app.get('/*',(req,res)=>{ 
