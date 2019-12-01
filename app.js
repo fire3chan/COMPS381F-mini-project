@@ -13,6 +13,11 @@ const updatePage = require('./routes/update');
 const gotoUpdatePage = require('./routes/gotoUpdate');
 const messagePage = require('./routes/message');
 
+const restfulGetName = require('./routes/restfulGetName');
+const restfulGetBoro = require('./routes/restfulGetBoro');
+const restfulGetCuis = require('./routes/restfulGetCuis');
+const restfulPost = require('./routes/restfulPost');
+
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -38,9 +43,12 @@ app.post("/update", updatePage);
 app.get("/gotoUpdate", gotoUpdatePage);
 app.post("/message", messagePage);
 
-/* handle other pathname
-app.get('/*',(req,res)=>{ 
-	res.status(500).render('Invalid Pathname!');
-});*/
+/* RESTful */
+app.get('/api/restaurant/name/:name', restfulGetName);
+app.get('/api/restaurant/borough/:borough', restfulGetBoro);
+app.get('/api/restaurant/cuisine/:cuisine', restfulGetCuis);
+app.post('/api/restaurant', restfulPost);
+
+
 
 app.listen(process.env.PORT || 8099);
