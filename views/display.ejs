@@ -38,12 +38,12 @@
             <div class="col-12">
                 <div class="list-group">
                     <% 
-                    if(restaurants){
-                    for (i in restaurants) {  
-                        %>
+                    if (restaurants) {
+                        for (i in restaurants) {  
+                    %>
                     <div class="restaurant-item">
                         <div class="list-group-item">
-                            
+
                             <a class="restaurant-item-name d-block" href="/display?_id=<%= restaurants[i]._id %>">
                                 <%=restaurants[i].name%>
                             </a>
@@ -58,24 +58,25 @@
                                 </div>
                             </div>
                             <% if ((restaurants[i].owner) == sessionName){%>
-                                
-                                <a href="/gotoUpdate?_id=<%=restaurants[i]._id %>" class="btn btn-outline-primary">Update </a> 
-                                <a href="/delete?_id=<%=restaurants[i]._id %>" class="btn btn-outline-primary"> Delete </a>
+
+                            <a href="/gotoUpdate?_id=<%=restaurants[i]._id %>" class="btn btn-outline-primary">Update
+                            </a>
+                            <a href="/delete?_id=<%=restaurants[i]._id %>" class="btn btn-outline-primary"> Delete </a>
                             <% } %>
-                           
+
                         </div>
                     </div>
 
                     <% }}%>
-                
+
                 </div>
             </div>
         </div>
     </div>
 
     <script src="/bootstrap_js/bootstrap.js" type="text/javascript"> </script>
-    
-  
+
+
 </body>
 
 </html>
