@@ -13,3 +13,11 @@ body {
 .header-bar {
     background-color: #c5c5c5;
 }
+
+.logout-form {
+    margin: 0 1em;
+}
+
+.header {
+    margin: 0.5em 0;
+}

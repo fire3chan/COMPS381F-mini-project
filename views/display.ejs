@@ -21,6 +21,10 @@
                 </div>
                 <div class="col-6 d-flex justify-content-end align-items-center">
                     Hello user: <%= sessionName %>
+                    <form action="/message" method="POST" class="logout-form">
+                        <input name="action" value="logout" class="btn btn-outline-primary" type="submit">
+                    </form>
+
                 </div>
             </nav>
         </div>
@@ -43,31 +47,43 @@
                     %>
                     <div class="restaurant-item">
                         <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <a class="restaurant-item-name d-block" href="/display?_id=<%= restaurants[i]._id %>">
+                                    <%=restaurants[i].name%>
+                                </a>
+                                <small>Avg score:
+                                    <% let avgScore = 0;
+                                    if (restaurants[i].grades) {
 
-                            <a class="restaurant-item-name d-block" href="/display?_id=<%= restaurants[i]._id %>">
-                                <%=restaurants[i].name%>
-                            </a>
+                                        restaurants[i].grades.forEach(element => {
+                                            avgScore = avgScore + parseInt(element.score);
+                                        });
+                                        avgScore = avgScore / restaurants[i].grades.length;
+                                    }%>
+                                    <%= avgScore%>
+                                </small>
+                            </div>
+
                             <div class="restaurant-item-desc">
                                 <div class="mb-1">
                                     <img class="restaurant-icon" src="/images/address_pin.svg" />
-                                    <%= restaurants[i].building + ", " + restaurants[i].street %>
+                                    <%= restaurants[i].address.building + ", " + restaurants[i].address.street %>
                                 </div>
                                 <div class="mb-1">
                                     <img class="restaurant-icon" src="/images/price_tag.svg" />
                                     <%= restaurants[i].cuisine %>
                                 </div>
                             </div>
-                            <% if ((restaurants[i].owner) == sessionName){%>
-
-                            <a href="/gotoUpdate?_id=<%=restaurants[i]._id %>" class="btn btn-outline-primary">Update
+                            <% if ((restaurants[i].owner) == sessionName) { %>
+                            <a href="/gotoUpdate?_id=<%= restaurants[i]._id %>" class="btn btn-outline-primary">Update
                             </a>
                             <a href="/delete?_id=<%=restaurants[i]._id %>" class="btn btn-outline-primary"> Delete </a>
                             <% } %>
 
                         </div>
                     </div>
-
                     <% }}%>
+
 
                 </div>
             </div>

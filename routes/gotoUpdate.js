@@ -2,15 +2,16 @@ const assert = require("assert");
 const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;
 
+const dbLink = "mongodb://student:std9870@cluster0-shard-00-00-pdydm.mongodb.net:27017,cluster0-shard-00-01-pdydm.mongodb.net:27017,cluster0-shard-00-02-pdydm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
+const dbName = "test";
+const client = new MongoClient(dbLink);
+
 const run = (req, res) => {
 
-    const dbLink = "mongodb://student:std9870@cluster0-shard-00-00-pdydm.mongodb.net:27017,cluster0-shard-00-01-pdydm.mongodb.net:27017,cluster0-shard-00-02-pdydm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
-    const dbName = "test";
-    const client = new MongoClient(dbLink);
-
-    let restaurantIdObj = new ObjectID(req.query._id);
-
-    const findRestaurant = (db, callback) => {
+    if (req.cookies.session !== null && req.cookies.session !== "" && req.cookies.session !== undefined) {
+      
+      let restaurantIdObj = new ObjectID(req.query._id);
+      const findRestaurant = (db, callback) => {
         db.collection("prorestaurant").findOne({ "_id": restaurantIdObj }, (err, result) => {
             assert.equal(null, err);
             const restaurantObj = result;
@@ -42,6 +43,10 @@ const run = (req, res) => {
         });
 
     });
+    } else {
+        res.redirect("/");
+        res.end();
+    }
 }
 
 module.exports = run;

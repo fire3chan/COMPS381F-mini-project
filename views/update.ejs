@@ -20,6 +20,9 @@
 				</div>
 				<div class="col-6 d-flex justify-content-end align-items-center">
 					Hello user: <%= sessionName %>
+					<form action="/message" method="POST" class="logout-form">
+						<input name="action" value="logout" class="btn btn-outline-primary" type="submit">
+					</form>
 				</div>
 			</nav>
 		</div>

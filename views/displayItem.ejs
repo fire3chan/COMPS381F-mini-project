@@ -41,23 +41,28 @@
             </div>
 			
 			 <h1 class="col-12 header text-center"><%= restaurants[0].name %></h1>
-			 
-			<!--<div class="col-12">
+			
+			<% if(restaurants[0].photo){%>			
+			<div class="col-12">
 			 <img src=" data:<%= mimetype %>;base64, <%= photo %>" style="width:100%">
-			</div>-->
+			</div>
+			<% } %>
+			
 	
 			<div class="col-12">	
 				<p><label>Borough: </label><%=restaurants[0].borough%></p>
 				<p><label>Cuisine: </label><%=restaurants[0].cuisine%></p>
-				<p><label>Street: </label><%=restaurants[0].street%></p>
-				<p><label>Building: </label><%=restaurants[0].building%></p>
-				<p><label>Zipcode: </label><%=restaurants[0].zipcode%></p>
-				<p><label>GPS: </label><%=restaurants[0].lat%>,<%=restaurants[0].lon%></p>
-				<p><label>Rating: </label><%=restaurants[0].rate%></p>
+				<p><label>Street: </label><%=restaurants[0].address.street%></p>
+				<p><label>Building: </label><%=restaurants[0].address.building%></p>
+				<p><label>Zipcode: </label><%=restaurants[0].address.zipcode%></p>
+				<p><label>GPS: </label><%=restaurants[0].address.coord%></p>
+				<p><label>Rating: </label><%=restaurants[0].grades%></p>
 				<p><label>Created by: </label><%=owner%></p>
 			</div>
 			
+			<% if(restaurants[0].address.coord !== 'undefined, undefined' && restaurants[0].address.coord !== null && restaurants[0].address.coord.length >2 ){%>
 			<p><a href=<%=showMap%>>Map</a></p>
+			<% } %>
 			
 			<div class="col-12">
 			<a href=<%=rateWithId%> style="text-decoration:none">
