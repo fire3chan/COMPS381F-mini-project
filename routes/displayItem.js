@@ -1,16 +1,16 @@
 const assert = require("assert");
 const MongoClient = require("mongodb").MongoClient;
-const ObjectID = require('mongodb').ObjectID;
+const ObjectID = require("mongodb").ObjectID;
 
 const run = (req, res) => {
 
-	const dbLink = 'mongodb://student:std9870@cluster0-shard-00-00-pdydm.mongodb.net:27017,cluster0-shard-00-01-pdydm.mongodb.net:27017,cluster0-shard-00-02-pdydm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
+	const dbLink = "mongodb://student:std9870@cluster0-shard-00-00-pdydm.mongodb.net:27017,cluster0-shard-00-01-pdydm.mongodb.net:27017,cluster0-shard-00-02-pdydm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
 
     const dbName = "test";
     const client = new MongoClient(dbLink);
 
 	let criteria = {};
-    criteria['_id'] = ObjectID(req.query._id);
+    criteria["_id"] = ObjectID(req.query._id);
 	
 		client.connect((err) => {
 			assert.equal(null, err);
@@ -29,7 +29,7 @@ const run = (req, res) => {
 				}
 				
 				//restaurants = search result
-				res.render('displayItem.ejs',{			
+				res.render("displayItem.ejs",{			
 					owner : restaurants[0].owner,
 					mimetype : restaurants[0].photo_mimetype,
 					photo : restaurants[0].photo,
@@ -48,7 +48,7 @@ const run = (req, res) => {
 }
 
 	const findRestaurants = (db, criteria, callback) => {
-		cursor = db.collection('prorestaurant').find(criteria).sort({name: -1}); 	
+		cursor = db.collection("prorestaurant").find(criteria).sort({name: -1}); 	
 		let restaurants = [];		
 		cursor.forEach((doc) => {
 			restaurants.push(doc);

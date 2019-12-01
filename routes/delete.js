@@ -1,10 +1,10 @@
 const assert = require("assert");
 const MongoClient = require("mongodb").MongoClient;
-const ObjectID = require('mongodb').ObjectID;
+const ObjectID = require("mongodb").ObjectID;
 
 
 const run = (req, res) => {
-	const dbLink = 'mongodb://student:std9870@cluster0-shard-00-00-pdydm.mongodb.net:27017,cluster0-shard-00-01-pdydm.mongodb.net:27017,cluster0-shard-00-02-pdydm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
+	const dbLink = "mongodb://student:std9870@cluster0-shard-00-00-pdydm.mongodb.net:27017,cluster0-shard-00-01-pdydm.mongodb.net:27017,cluster0-shard-00-02-pdydm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
 	const dbName = "test";
 	const client = new MongoClient(dbLink);
 	let abc = new ObjectID(req.query._id);
@@ -12,7 +12,7 @@ const run = (req, res) => {
 
 	const deleteRestaurant = (db, callback) => {
 		console.log(abc);
-		db.collection('prorestaurant').removeOne({ "_id": abc }, (err, result) => {
+		db.collection("prorestaurant").removeOne({ "_id": abc }, (err, result) => {
 			assert.equal(err, null);
 			console.log("delete was successful!");
 			console.log(JSON.stringify(result));
@@ -35,7 +35,7 @@ const run = (req, res) => {
 
 			client.close();
 
-			res.status(200).end('Restaurant was deleted!');
+			res.status(200).end("Restaurant was deleted!");
 
 
 		});
