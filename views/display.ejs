@@ -43,7 +43,7 @@
                         %>
                     <div class="restaurant-item">
                         <div class="list-group-item">
-
+                            
                             <a class="restaurant-item-name d-block" href="/display?_id=<%= restaurants[i]._id %>">
                                 <%=restaurants[i].name%>
                             </a>
@@ -58,9 +58,9 @@
                                 </div>
                             </div>
                             <% if ((restaurants[i].owner) == sessionName){%>
-
+                                
                                 <a href="/gotoUpdate?_id=<%=restaurants[i]._id %>" class="btn btn-outline-primary">Update </a> 
-                                <button onclick="myFunction()" class="btn btn-outline-primary"> Delete </a>
+                                <a href="/delete?_id=<%=restaurants[i]._id %>" class="btn btn-outline-primary"> Delete </a>
                             <% } %>
                            
                         </div>
@@ -75,18 +75,7 @@
 
     <script src="/bootstrap_js/bootstrap.js" type="text/javascript"> </script>
     
-    <script>
-    function myFunction() {
-
-    if (confirm("Do u really want to delete")) {
-        window.location="/delete?_id=<%=restaurants[i]._id %>";
-    } else {
-   
-    }
-
-    }
-
-    </script>
+  
 </body>
 
 </html>

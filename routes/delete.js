@@ -11,6 +11,7 @@ const run = (req, res) => {
 
         
 	const deleteRestaurant = (db, callback) => {
+        console.log(abc);
         db.collection('prorestaurant').removeOne({"_id" : abc },(err, result) => {
 			assert.equal(err, null);
 			console.log("delete was successful!");

@@ -23,12 +23,13 @@ const run = (req, res) => {
     const client = new MongoClient(dbLink);
 
     let parsedURL = url.parse(req.url, true);
-    let abc = new ObjectID(req.url._id);
+    let abc = new ObjectID(req.query._id);
 
     const findRestaurants = (db, callback) => {
-       db.collection('prorestaurant').findOne({"_id":abc},(err,result)=>{
-        console.log(result);
-        callback(result);
+       db.collection('prorestaurant').findOne({ "_id" : abc }, (err,result)=> {
+      
+        const restaurantObj = result
+        callback(restaurantObj);
         
     });
     }
@@ -39,15 +40,21 @@ const run = (req, res) => {
 			const db = client.db(dbName);
 
 			findRestaurants(db, (restaurants) => {
-                // console.log(res.headersSent);
+                var co = restaurants.address.coord;
+					let str = [];
+					str=co.split(",");
+					var lat = parseInt(str[0]);
+                    var lot = parseInt(str[1]);
 				res.render('update.ejs', {
 					sessionName: req.cookies.session,
                     _id: req.query._id,
-					// length: restaurants.length,
-					restaurants: restaurants
-				});
+                    restaurants: restaurants,
+                    lat : lat,
+                    lot : lot
+                    
+
+                });
                 res.end();
-                
                 client.close();
 			});
 
