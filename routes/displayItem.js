@@ -21,17 +21,24 @@ const run = (req, res) => {
 			findRestaurants(db, criteria, (restaurants) => {
 				client.close();
 				
+				//returns string of number, number
+				let coord = restaurants[0].address.coord;
+				let str = [];
+				if(coord && coord != undefined && coord != null){
+					str = coord.split(", "); 
+				}
+				
 				//restaurants = search result
 				res.render('displayItem.ejs',{			
-					owner : 'demo',
-					mimetype : "",
-					photo : "",
+					owner : restaurants[0].owner,
+					mimetype : restaurants[0].photo_mimetype,
+					photo : restaurants[0].photo,
 					//define the restaurants array = restaurants return search result
 					restaurants : restaurants,
-					//showMap : "/gmap?lat="+restaurants[0].lat+"&lon="+restaurants[0].lon+"&name="+restaurants[0].name,
-					showMap : "/gmap?lat="+restaurants[0].lat+"&lon="+restaurants[0].lon,
+
+					showMap : "/gmap?lat="+str[0]+"&lon="+str[1]+"&name="+restaurants[0].name,
 					rateWithId	:"/rate?_id="+restaurants[0]._id,
-					editWithId  :"/edit?_id="+restaurants[0]._id,
+					editWithId  :"/gotoUpdate?_id="+restaurants[0]._id,
 					delWithId	:"/delete?_id="+restaurants[0]._id		
 				})	
 			})
