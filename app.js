@@ -12,6 +12,8 @@ const showMap = require('./routes/showMap');
 const updatePage = require('./routes/update');
 const gotoUpdatePage = require('./routes/gotoUpdate');
 const messagePage = require('./routes/message');
+const rateFormPage = require('./routes/rateForm');
+const ratePage = require('./routes/rate');
 
 const restfulGetName = require('./routes/restfulGetName');
 const restfulGetBoro = require('./routes/restfulGetBoro');
@@ -42,6 +44,8 @@ app.get("/gmap", showMap);
 app.post("/update", updatePage);
 app.get("/gotoUpdate", gotoUpdatePage);
 app.post("/message", messagePage);
+app.get("/rateForm", rateFormPage);
+app.post("/rate", ratePage);
 
 /* RESTful */
 app.get('/api/restaurant/name/:name', restfulGetName);

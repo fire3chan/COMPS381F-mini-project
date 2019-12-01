@@ -37,7 +37,7 @@ const run = (req, res) => {
 					restaurants : restaurants,
 
 					showMap : "/gmap?lat="+str[0]+"&lon="+str[1]+"&name="+restaurants[0].name,
-					rateWithId	:"/rate?_id="+restaurants[0]._id,
+					rateWithId	:"/rateForm?_id="+restaurants[0]._id,
 					editWithId  :"/gotoUpdate?_id="+restaurants[0]._id,
 					delWithId	:"/delete?_id="+restaurants[0]._id		
 				})	

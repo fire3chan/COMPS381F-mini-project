@@ -92,6 +92,7 @@ const run = (req, res) => {
 					restaurant.address['building'] = fields.building;
 					restaurant.address['zipcode'] = fields.zipcode;
 					restaurant.address['coord'] = fields.latitude + ", " + fields.longitude;
+					restaurant.grades = [];
 					restaurant['owner'] = req.cookies.session;
 
 					insertRestaurant(db, restaurant, () => {

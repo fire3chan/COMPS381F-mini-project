@@ -17,3 +17,7 @@ body {
 .logout-form {
     margin: 0 1em;
 }
+
+.header {
+    margin: 0.5em 0;
+}
