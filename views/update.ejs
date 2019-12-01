@@ -41,21 +41,24 @@
 						<p>
 							<input type="hidden" value="<%= _id %>" name="_id" id="_id">
 							<label for="name">Name</label>
-							<input id="name" name="name" class="form-control" type="text" required>
-						</p>
+							<input id="name" name="name" class="form-control" type="text" required
+								value="<%=restaurant.name%>"></p>
+
 					</div>
 
 					<div class="form-group col-12">
 						<p>
 							<label for="borough">Borough</label>
-							<input id="borough" name="borough" class="form-control" type="text">
+							<input id="borough" name="borough" class="form-control" type="text"
+								value="<%=restaurant.borough%>">
 						</p>
 					</div>
 
 					<div class="form-group col-12">
 						<p>
 							<label for="cuisine">Cuisine</label>
-							<input id="cuisine" name="cuisine" class="form-control" type="text">
+							<input id="cuisine" name="cuisine" class="form-control" type="text"
+								value="<%=restaurant.cuisine%>">
 						</p>
 					</div>
 
@@ -66,36 +69,37 @@
 					<div class="form-group col-12">
 						<p>
 							<label for="street">Street</label>
-							<input id="street" name="street" class="form-control" type="text"></p>
+							<input id="street" name="street" class="form-control" type="text"
+								value="<%=restaurant.address.street%>"></p>
 					</div>
 
 					<div class="form-group col-12">
 						<p>
 							<label for="building">Building</label>
-							<input id="building" name="building" class="form-control" type="text">
-						</p>
+							<input id="building" name="building" class="form-control" type="text"
+								value="<%=restaurant.address.building%>"></p>
+
 					</div>
 
 					<div class="form-group col-12">
 						<p>
 							<label for="zipcode">Zipcode</label>
-							<input id="zipcode" name="zipcode" class="form-control" type="text">
-						</p>
+							<input id="zipcode" name="zipcode" class="form-control" type="text"
+								value="<%=restaurant.address.zipcode%>"></p>
 					</div>
 
 					<div class="form-group col-12">
 						<p>
 							<label for="latitude">Latitude - GPS Coordinates (Range: -90 - 90)</label>
 							<input id="latitude" name="latitude" class="form-control" type="number" min="-90" max="90"
-								step="any">
+								step="any" value="<%=lat%>">
 						</p>
 					</div>
-
 					<div class="form-group col-12">
 						<p>
 							<label for="longitude">Longitude - GPS Coordinates (Range: -180 - 180)</label>
-							<input id="longitude" name="longitude" class="form-control" type="number" min="-180"
-								max="180" step="any">
+							<input id="longitude" name="longitude" class="form-control" type="number" value="<%=lot%>"
+								min="-180" max="180" step="any">
 						</p>
 					</div>
 
@@ -106,8 +110,15 @@
 					<div class="form-group col-12">
 						<p>
 							<label for="photo">Photo</label>
-							<input id="photo" name="photo" type="file">
+							<input id="photo" name="photo" type="file" />
 						</p>
+						<div>
+							<p>
+								old photo:
+							</p>
+							<img src=" data:<%= restaurant.mimetype %>;base64, <%= restaurant.photo %>"
+								style="width:100%">
+						</div>
 					</div>
 
 					<div class="submit-btn col-12">
@@ -120,6 +131,10 @@
 	</div>
 
 	<script src="/bootstrap_js/bootstrap.js" type="text/javascript"></script>
+
+	<script>
+
+	</script>
 </body>
 
 </html>

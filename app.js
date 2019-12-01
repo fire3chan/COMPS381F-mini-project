@@ -11,6 +11,7 @@ const readPage = require('./routes/read');
 const showMap = require('./routes/showMap');
 const updatePage = require('./routes/update');
 const gotoUpdatePage = require('./routes/gotoUpdate');
+const deletePage = require('./routes/delete');
 const messagePage = require('./routes/message');
 const rateFormPage = require('./routes/rateForm');
 const ratePage = require('./routes/rate');
@@ -43,6 +44,7 @@ app.get("/read", readPage);
 app.get("/gmap", showMap);
 app.post("/update", updatePage);
 app.get("/gotoUpdate", gotoUpdatePage);
+app.get("/delete", deletePage);
 app.post("/message", messagePage);
 app.get("/rateForm", rateFormPage);
 app.post("/rate", ratePage);
@@ -52,7 +54,6 @@ app.get('/api/restaurant/name/:name', restfulGetName);
 app.get('/api/restaurant/borough/:borough', restfulGetBoro);
 app.get('/api/restaurant/cuisine/:cuisine', restfulGetCuis);
 app.post('/api/restaurant', restfulPost);
-
 
 
 app.listen(process.env.PORT || 8099);
