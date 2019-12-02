@@ -36,7 +36,7 @@ const run = (req, res) => {
 
     const db = client.db(dbName);
 
-    let cursor = db.collection('user').find({ "userid": userid }).limit(1);
+    let cursor = db.collection("user").find({ "userid": userid }).limit(1);
     cursor.count((error, count) => {
       if (count == 0) {
         res.render("message.ejs", {

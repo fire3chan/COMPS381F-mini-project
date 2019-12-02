@@ -54,13 +54,17 @@
                                 <small>Avg score:
                                     <% let avgScore = 0;
                                     if (restaurants[i].grades) {
-
-                                        restaurants[i].grades.forEach(element => {
-                                            avgScore = avgScore + parseInt(element.score);
-                                        });
-                                        avgScore = avgScore / restaurants[i].grades.length;
-                                    }%>
-                                    <%= avgScore%>
+                                        if (restaurants[i].grades.length !== 0) {
+                                            restaurants[i].grades.forEach(element => {
+                                                avgScore = avgScore + parseInt(element.score);
+                                            });
+                                            avgScore = avgScore / restaurants[i].grades.length; 
+                                    %>
+                                    <%= avgScore %>
+                                    <% } else { %>
+                                    <span>No one rate yet.</span>
+                                    <% } 
+                                     }%>
                                 </small>
                             </div>
 

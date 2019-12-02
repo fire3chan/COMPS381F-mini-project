@@ -1,11 +1,11 @@
 const assert = require("assert");
 const MongoClient = require("mongodb").MongoClient;
-const fs = require('fs'); //require file system
-const formidable = require('formidable');
+const fs = require("fs"); //require file system
+const formidable = require("formidable");
 
 const run = (req, res) => {
 
-	const dbLink = 'mongodb://student:std9870@cluster0-shard-00-00-pdydm.mongodb.net:27017,cluster0-shard-00-01-pdydm.mongodb.net:27017,cluster0-shard-00-02-pdydm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
+	const dbLink = "mongodb://student:std9870@cluster0-shard-00-00-pdydm.mongodb.net:27017,cluster0-shard-00-01-pdydm.mongodb.net:27017,cluster0-shard-00-02-pdydm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 	const dbName = "test";
 	const client = new MongoClient(dbLink);
@@ -15,7 +15,7 @@ const run = (req, res) => {
 	let restaurant = {};
 
 	const insertRestaurant = (db, restaurant, callback) => {
-		db.collection('prorestaurant').insertOne(restaurant, (err, result) => {
+		db.collection("prorestaurant").insertOne(restaurant, (err, result) => {
 			assert.equal(err, null);
 
 			console.log("insert was successful!");
@@ -25,7 +25,7 @@ const run = (req, res) => {
 	}
 
 	const getRestaurantId = (db, callback) => {
-		db.collection('prorestaurant').count((error, result) => {
+		db.collection("prorestaurant").count((error, result) => {
 			assert.equal(error, null);
 			callback(result);
 		})
@@ -34,7 +34,7 @@ const run = (req, res) => {
 	form.parse(req, (err, fields, files) => {
 		assert.equal(err, null);
 
-		console.log('Fields', fields);
+		console.log("Fields", fields);
 		let photo = files.photo;
 		console.log(photo);
 		let filename = photo.path;
@@ -66,7 +66,7 @@ const run = (req, res) => {
 
 		fs.readFile(filename, (err, data) => {
 			assert.equal(err, null);
-			restaurant['photo'] = new Buffer.from(data).toString('base64');
+			restaurant["photo"] = new Buffer.from(data).toString("base64");
 
 			client.connect((err) => {
 				try {
@@ -83,17 +83,17 @@ const run = (req, res) => {
 
 				const db = client.db(dbName);
 				getRestaurantId(db, (result) => {
-					restaurant['restaurant_id'] = result;
-					restaurant['name'] = fields.name;
-					restaurant['borough'] = fields.borough;
-					restaurant['cuisine'] = fields.cuisine;
+					restaurant["restaurant_id"] = result;
+					restaurant["name"] = fields.name;
+					restaurant["borough"] = fields.borough;
+					restaurant["cuisine"] = fields.cuisine;
 					restaurant.address = {};
-					restaurant.address['street'] = fields.street;
-					restaurant.address['building'] = fields.building;
-					restaurant.address['zipcode'] = fields.zipcode;
-					restaurant.address['coord'] = fields.latitude + ", " + fields.longitude;
+					restaurant.address["street"] = fields.street;
+					restaurant.address["building"] = fields.building;
+					restaurant.address["zipcode"] = fields.zipcode;
+					restaurant.address["coord"] = fields.latitude + ", " + fields.longitude;
 					restaurant.grades = [];
-					restaurant['owner'] = req.cookies.session;
+					restaurant["owner"] = req.cookies.session;
 
 					insertRestaurant(db, restaurant, () => {
 						res.render("message.ejs", {

@@ -1,10 +1,10 @@
 const assert = require("assert");
 const MongoClient = require("mongodb").MongoClient;
-const url = require('url');
+const url = require("url");
 
 const run = (req, res) => {
 	if (req.cookies.session !== null && req.cookies.session !== "" && req.cookies.session !== undefined) {
-		const dbLink = 'mongodb://student:std9870@cluster0-shard-00-00-pdydm.mongodb.net:27017,cluster0-shard-00-01-pdydm.mongodb.net:27017,cluster0-shard-00-02-pdydm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
+		const dbLink = "mongodb://student:std9870@cluster0-shard-00-00-pdydm.mongodb.net:27017,cluster0-shard-00-01-pdydm.mongodb.net:27017,cluster0-shard-00-02-pdydm.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 		const dbName = "test";
 		const client = new MongoClient(dbLink);
@@ -22,7 +22,7 @@ const run = (req, res) => {
 				client.close();
 
 				//restaurants = search result
-				res.render('display.ejs', {
+				res.render("display.ejs", {
 					sessionName: req.cookies.session,
 					length: restaurants.length,
 					criteria: JSON.stringify(criteria),
@@ -42,7 +42,7 @@ const run = (req, res) => {
 }
 
 const findRestaurants = (db, criteria, callback) => {
-	cursor = db.collection('prorestaurant').find(criteria).sort({ name: -1 });
+	cursor = db.collection("prorestaurant").find(criteria).sort({ name: -1 });
 	let restaurants = [];
 	cursor.forEach((doc) => {
 		restaurants.push(doc);
