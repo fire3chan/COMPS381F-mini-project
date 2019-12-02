@@ -24,9 +24,13 @@ const run = (req, res) => {
 		try {
 			assert.equal(err, null);
 		} catch (err) {
-			res.writeHead(500, { "Content-Type": "plain/html" });
-			res.send("MongoClient connect() failed!");
+			res.render("message.ejs", {
+				message: "MongoClient connect() failed!",
+				buttonLink: "/read",
+				buttonText: "Home"
+			});
 			res.end();
+
 			return;
 		}
 
@@ -34,8 +38,12 @@ const run = (req, res) => {
 		deleteRestaurant(db, () => {
 
 			client.close();
-
-			res.status(200).end("Restaurant was deleted!");
+			res.render("message.ejs", {
+				message: "Restaurant was deleted!",
+				buttonLink: "/read",
+				buttonText: "Home"
+			});
+			res.end();
 
 
 		});
