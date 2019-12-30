@@ -33,7 +33,21 @@
 </head>
 
 <body>
-
+	<div class="header-bar">
+		<div class="container">
+			<nav class="row">
+				<div class="col-6 logo-ctn">
+					<img class="logo" src="/images/fork.svg" />
+				</div>
+				<div class="col-6 d-flex justify-content-end align-items-center">
+					Hello user: <%= sessionName %>
+					<form action="/message" method="POST" class="logout-form">
+						<input name="action" value="logout" class="btn btn-outline-primary" type="submit">
+					</form>
+				</div>
+			</nav>
+		</div>
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-12 logo-ctn text-center">
